@@ -92,6 +92,9 @@ Memahami bahasa pemrograman Dart penting karena Flutter merupakan framework yang
      hobi = "Membaca";
      print(hobi);              // output: Membaca
    }
+   ```
+   **Output Kode:**
+   <img src="img/null_safety.png">
 2. **Late Variable**  
    - Digunakan untuk menunda inisialisasi variabel.
    - Nilainya harus diisi sebelum dipakai (misalnya lewat input atau hasil perhitungan). 
@@ -107,3 +110,5 @@ Memahami bahasa pemrograman Dart penting karena Flutter merupakan framework yang
     print(namaLengkap);                  // output: Afifah Khoirunnisa
     }
     ```
+    **Output Kode:**
+   <img src="img/late_variable.png">
