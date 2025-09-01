@@ -1,4 +1,4 @@
-# 📱✨ PEMROGRAMAN MOBILE MENGGUNAKAN DART ✨📱  
+# 📱PEMROGRAMAN MOBILE MENGGUNAKAN DART   
 
 Halo, selamat datang di repositori ini! 🐥  
 Repo ini berisi catatan dan praktikum di semester 5 selama perjalanan belajar **Pemrograman Mobile dengan Dart** 🚀  
