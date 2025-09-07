@@ -20,6 +20,7 @@ Berikut daftar materi praktikum setiap minggu (klik link buat lihat isi folderny
 | Minggu | Materi                     | Link Praktikum                                                                 |
 |--------|----------------------------|-------------------------------------------------------------------------------|
 | 2      | Pengantar Bahasa Pemrograman Dart - Bagian 1 🐦          | [Praktikum Minggu 2](./codelab02/README.md)                                               |
+| 3      | Pengantar Bahasa Pemrograman Dart - Bagian 2 📒          | [Praktikum Minggu 3](./codelab03/README.md)                                               |
 <!-- | 2      | Variabel & Tipe Data 🔢    | [Praktikum Minggu 2](./minggu2)                                               |
 | 3      | Control Flow 🎛️            | [Praktikum Minggu 3](./minggu3)                                               |
 | 4      | Null Safety & Late 🌙       | [Praktikum Minggu 4](./minggu4)                                               |
