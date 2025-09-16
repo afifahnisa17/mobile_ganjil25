@@ -99,3 +99,57 @@ Hasil diatas tidak bisa mengeluarkan output dikarenakan masing-masing variabel t
 
 **Perbaikan:**
 <img src="img/prak2_fix-langkah3.png">
+
+## PRAKTIKUM 3
+### Langkah 1
+**Ketik atau salin kode program berikut ke dalam fungsi main().**
+```dart
+  var gifts = {
+    // Key:    Value
+    'first': 'partridge',
+    'second': 'turtledoves',
+    'fifth': 1
+  };
+
+  var nobleGases = {
+    2: 'helium',
+    10: 'neon',
+    18: 2,
+  };
+
+  print(gifts);
+  print(nobleGases);
+```
+
+## Langkah 2
+**Silakan coba eksekusi (Run) kode pada langkah 1 tersebut. Apa yang terjadi? Jelaskan! Lalu perbaiki jika terjadi error.**
+
+<img src="img/prak3_langkah1.png">
+
+Tidak terjadi error pada kode tersebut.
+
+## Langkah 3
+**Tambahkan kode program berikut, lalu coba eksekusi (Run) kode Anda.**
+
+```dart
+  var mhs1 = Map<String, String>();
+  gifts['first'] = 'partridge';
+  gifts['second'] = 'turtledoves';
+  gifts['fifth'] = 'golden rings';
+
+  var mhs2 = Map<int, String>();
+  nobleGases[2] = 'helium';
+  nobleGases[10] = 'neon';
+  nobleGases[18] = 'argon';
+```
+
+**Apa yang terjadi ? Jika terjadi error, silakan perbaiki.**
+
+Error itu muncul karena di map awal campur-campur isiannya, ada yang berupa teks (**String**) dan ada yang berupa angka (**int**). Akibatnya, Dart bingung harus menganggap tipe datanya apa. Waktu coba ganti isi yang tadinya angka jadi teks, Dart anggap itu tidak cocok dengan tipe awal sehingga muncul error. Supaya aman, dari awal langsung tentukan tipe map-nya, misalnya semua isi harus String (`<String, String>`) atau sesuai kebutuhan, biar konsisten dan tidak bikin error.
+
+**Perbaikan:**
+<img src="img/prak3_fix-langkah3.png">
+
+<img src="img/prak3_fix-langkah3-output.png">
+
+
