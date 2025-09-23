@@ -228,7 +228,7 @@ Error tersebut dikarenakan variabel list1 belum didefinisikan.
 **Tambahkan variabel list berisi NIM Anda menggunakan Spread Operators.**
 <img src="img/prak4_langkah3-2.png">
 
-## Langkah 4:
+### Langkah 4:
 **Tambahkan kode program berikut, lalu coba eksekusi (Run) kode Anda.**
 
 ```dart
@@ -242,7 +242,7 @@ Kode diatas error karena memang boolean promoActive belum tertulis booleannya be
 **Perbaikan:**
 <img src="img/prak4_langkah4.png">
 
-## Langkah 5
+### Langkah 5
 **Tambahkan kode program berikut, lalu coba eksekusi (Run) kode Anda.**
 ```dart
 var nav2 = ['Home', 'Furniture', 'Plants', if (login case 'Manager') 'Inventory'];
@@ -254,7 +254,7 @@ Kode tersebut error, dikarenakan value dari login belum didefinisikan.
 **Perbaikan:**
 <img src="img/prak4_langkah5.png">
 
-## Langkah 6
+### Langkah 6
 **Tambahkan kode program berikut, lalu coba eksekusi (Run) kode Anda.**
 ```dart
 var listOfInts = [1, 2, 3];
@@ -271,7 +271,7 @@ Kode tersebut berfungsi untuk membuat perulangan angka, walaupun didepannya ada 
 Manfaat dari kode collection for adalah membuat kode menjadi lebih ringkas. Jadi, kita tidak perlu untuk membuat kode berulang-ulang.
 
 ## PRAKTIKUM 5
-## Langkah 1
+### Langkah 1
 **Ketik atau salin kode program berikut ke dalam fungsi main().**
 
 ```dart
@@ -279,14 +279,14 @@ var record = ('first', a: 2, b: true, 'last');
 print(record)
 ```
 
-## Langkah 2
+### Langkah 2
 **Silakan coba eksekusi (Run) kode pada langkah 1 tersebut. Apa yang terjadi? Jelaskan! Lalu perbaiki jika terjadi error.**
 <img src="img/prak5_langkah1.png">
 
 Kode diatas menggunakan record, fitur baru di dart versi 3.0 yang memungkinkan kita menyimpan beberapa nilai dengan tipe data yang berbeda dalam satu struktur dara, mirip seperti tuple.
 
 
-## Langkah 3
+### Langkah 3
 **Tambahkan kode program berikut di luar scope void main(), lalu coba eksekusi (Run) kode Anda.**
 ```dart
 (int, int) tukar((int, int) record) {
@@ -298,7 +298,7 @@ Jika menggunakan kode diatas saja, maka akan error karena tidak di panggil dalam
 
 <img src="img/prak5_langkah3.png">
 
-## Langkah 4
+### Langkah 4
 **Tambahkan kode program berikut di dalam scope void main(), lalu coba eksekusi (Run) kode Anda.**
 ```dart
 // Record type annotation in a variable declaration:
@@ -310,7 +310,7 @@ print(mahasiswa);
 Kode diatas error dikarenakan value dari mahasiswa belum dimasukkan. Berikut adalah perbaikannya
 <img src="img/prak5_langkah4.png">
 
-## Langkah 5
+### Langkah 5
 **Tambahkan kode program berikut di dalam scope void main(), lalu coba eksekusi (Run) kode Anda.**
 
 ```dart
@@ -329,3 +329,134 @@ print(mahasiswa2.$2); // Prints 'last'
 Tidak ada error yang terjadi.
 Berikut adalah kode yang sudah dimodifikasi nim dan nama.
 <img src="img/prak5_langkah5-2.png">
+
+## TUGAS PRAKTIKUM
+
+**1. Jelaskan yang dimaksud Functions dalam bahasa Dart!**
+
+Fungsi adalah blok kode yang dirancang untuk menjalankan tugas tertentu. Fungsi membantu mengorganisasi kode, membuatnya lebih mudah dibaca, dikelola, dan menghindari penulisan kode yang berulang. Setiap fungsi memiliki nama, dapat menerima input (disebut parameter), dan dapat menghasilkan output (disebut nilai kembalian atau return value).
+
+**2. Jelaskan jenis-jenis parameter di Functions beserta contoh sintaksnya!**
+
+- Parameter Wajib (Required Positional Parameters)
+Parameter ini harus selalu diberikan saat memanggil fungsi, dan urutannya harus sesuai dengan urutan saat dideklarasikan.
+
+```dart
+void tampilkanData(String nama, int umur) {
+  print('Nama: $nama, Umur: $umur');
+}
+
+tampilkanData('Budi', 25);
+```
+
+- Parameter Bernama (Named Parameters)
+Parameter ini dikelilingi kurung kurawal {}. Kamu bisa memberikannya dalam urutan apa pun saat memanggil fungsi, asalkan menyebutkan namanya. Untuk membuatnya wajib, tambahkan required.
+```dart
+void cetakInfo({required String nama, int? umur}) {
+  print('Nama: $nama');
+  if (umur != null) {
+    print('Umur: $umur');
+  }
+}
+
+cetakInfo(umur: 30, nama: 'Andi');
+```
+
+- Parameter Opsional (Optional Positional Parameters)
+Parameter ini dikelilingi kurung siku [] dan bersifat opsional. Jika tidak diberikan, nilainya akan null atau nilai default yang sudah kamu tentukan.
+```dart
+void sapa(String nama, [String? sapaan]) {
+  var pesan = sapaan ?? 'Halo';
+  print('$pesan, $nama!');
+}
+
+sapa('Ani');
+sapa('Fajar', 'Selamat pagi');
+```
+
+**3. Jelaskan maksud Functions sebagai first-class objects beserta contoh sintaknya!**
+
+Di Dart, fungsi bisa diperlakukan seperti variabel. Kegunaannya yaitu:
+
+- Menyimpan fungsi dalam sebuah variabel:
+```dart
+int Function(int, int) tambah = (a, b) => a + b;
+var hasil = tambah(5, 3);
+print(hasil);
+```
+
+- Meneruskan fungsi sebagai argumen ke fungsi lain:
+```dart
+void jalankanOperasi(int a, int b, int Function(int, int) operasi) {
+  print(operasi(a, b));
+}
+
+jalankanOperasi(10, 5, (a, b) => a - b);
+```
+
+**4. Apa itu Anonymous Functions? Jelaskan dan berikan contohnya!**
+Anonymous functions adalah fungsi yang tidak memiliki nama. Fungsi ini biasanya digunakan untuk tugas yang singkat dan spesifik, misalnya saat iterasi di sebuah list atau saat mendefinisikan callback.
+
+```dart
+var angka = [1, 2, 3];
+
+// Anonymous function di dalam forEach
+angka.forEach((e) {
+  print('Angka: $e');
+});
+
+// Versi lebih ringkas (arrow function)
+angka.forEach((e) => print('Angka: $e'));
+```
+
+**5. Jelaskan perbedaan Lexical scope dan Lexical closures! Berikan contohnya!**
+
+- Lexical Scope: Ini adalah aturan di mana sebuah variabel bisa diakses, yang ditentukan oleh posisi penulisannya di kode. Variabel yang dideklarasikan di luar sebuah fungsi bisa diakses dari dalam fungsi tersebut, tapi variabel di dalam fungsi tidak bisa diakses dari luar.
+```dart
+var variabelLuar = 'Halo';
+
+void fungsiDalam() {
+  var variabelDalam = 'Dunia';
+  print('$variabelLuar $variabelDalam'); // Bisa mengakses variabelLuar
+}
+// print(variabelDalam); // Error: variabelDalam tidak terdefinisi di sini
+```
+
+- Lexical Closures: Closure adalah sebuah fungsi yang bisa mengakses variabel dari lingkup (scope) tempat ia dibuat, bahkan setelah lingkup tersebut sudah selesai dieksekusi. Closure ini "mengunci" akses ke variabel-variabel dari lingkup induknya.
+```dart
+Function buatPenghitung() {
+  int hitungan = 0;
+  return () {
+    hitungan++;
+    print(hitungan);
+  };
+}
+
+var hitung = buatPenghitung();
+hitung(); // Output: 1
+hitung(); // Output: 2
+// Variabel `hitungan` tetap ada dan nilainya berubah setiap kali fungsi `hitung()` dipanggil.
+```
+
+**6. Jelaskan dengan contoh cara membuat return multiple value di Functions!**
+Secara standar, fungsi hanya bisa mengembalikan satu nilai. Namun, kamu bisa mengembalikan beberapa nilai dengan:
+
+- Menggunakan Record: Fitur ini (sejak Dart 3.0) memungkinkan kamu mengembalikan beberapa nilai dengan tipe data yang sudah ditentukan.
+```dart
+(String, int) ambilDataUser() {
+  return ('Rina', 24);
+}
+
+var (nama, umur) = ambilDataUser(); // Langsung dipecah ke variabel
+print('Nama: $nama, Umur: $umur');
+```
+
+- Menggunakan List atau Map: Cara ini bisa kamu gunakan untuk mengemas nilai-nilai ke dalam satu objek.
+```dart
+List<dynamic> ambilData() {
+  return ['Siti', 28, true];
+}
+
+var data = ambilData();
+print('Nama: ${data[0]}, Umur: ${data[1]}');
+```
