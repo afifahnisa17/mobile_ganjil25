@@ -193,4 +193,79 @@ Error itu muncul karena di map awal campur-campur isiannya, ada yang berupa teks
 
 <img src="img/prak3_fix-langkah3-output.png">
 
+## PRAKTIKUM 4
+### Langkah 1
+**Ketik atau salin kode program berikut ke dalam fungsi main().**
 
+```dart
+  var list = [1, 2, 3];
+  var list2 = [0, ...list];
+  print(list1);
+  print(list2);
+  print(list2.length);
+```
+
+### Langkah 2
+**Silakan coba eksekusi (Run) kode pada langkah 1 tersebut. Apa yang terjadi? Jelaskan! Lalu perbaiki jika terjadi error.**
+
+<img src="img/prak4_langkah1.png">
+Error tersebut dikarenakan variabel list1 belum didefinisikan.
+
+<img src="img/prak4_fix-langkah1.png">
+
+### Langkah 3
+**Tambahkan kode program berikut, lalu coba eksekusi (Run) kode Anda.**
+```dart
+  list1 = [1, 2, null];
+  print(list1);
+  var list3 = [0, ...?list1];
+  print(list3.length)
+```
+
+**Apa yang terjadi ? Jika terjadi error, silakan perbaiki.**
+<img src="img/prak4_langkah3.png">
+
+**Tambahkan variabel list berisi NIM Anda menggunakan Spread Operators.**
+<img src="img/prak4_langkah3-2.png">
+
+## Langkah 4:
+**Tambahkan kode program berikut, lalu coba eksekusi (Run) kode Anda.**
+
+```dart
+var nav = ['Home', 'Furniture', 'Plants', if (promoActive) 'Outlet'];
+print(nav);
+```
+**Apa yang terjadi ? Jika terjadi error, silakan perbaiki. Tunjukkan hasilnya jika variabel promoActive ketika true dan false.**
+
+Kode diatas error karena memang boolean promoActive belum tertulis booleannya bernilai true atau false.
+
+**Perbaikan:**
+<img src="img/prak4_langkah4.png">
+
+## Langkah 5
+**Tambahkan kode program berikut, lalu coba eksekusi (Run) kode Anda.**
+```dart
+var nav2 = ['Home', 'Furniture', 'Plants', if (login case 'Manager') 'Inventory'];
+print(nav2);
+```
+**Apa yang terjadi ? Jika terjadi error, silakan perbaiki. Tunjukkan hasilnya jika variabel login mempunyai kondisi lain.**
+
+Kode tersebut error, dikarenakan value dari login belum didefinisikan.
+**Perbaikan:**
+<img src="img/prak4_langkah5.png">
+
+## Langkah 6
+**Tambahkan kode program berikut, lalu coba eksekusi (Run) kode Anda.**
+```dart
+var listOfInts = [1, 2, 3];
+var listOfStrings = ['#0', for (var i in listOfInts) '#$i'];
+assert(listOfStrings[1] == '#1');
+print(listOfStrings);
+```
+**Apa yang terjadi ? Jika terjadi error, silakan perbaiki. Jelaskan manfaat Collection For dan dokumentasikan hasilnya.**
+
+Kode tersebut berfungsi untuk membuat perulangan angka, walaupun didepannya ada simbol "#", tapi perulangan for tetap dapat berjalan.
+
+<img src="img/prak4_langkah6.png">
+
+Manfaat dari kode collection for adalah membuat kode menjadi lebih ringkas. Jadi, kita tidak perlu untuk membuat kode berulang-ulang.
