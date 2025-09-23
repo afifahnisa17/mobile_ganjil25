@@ -269,3 +269,63 @@ Kode tersebut berfungsi untuk membuat perulangan angka, walaupun didepannya ada 
 <img src="img/prak4_langkah6.png">
 
 Manfaat dari kode collection for adalah membuat kode menjadi lebih ringkas. Jadi, kita tidak perlu untuk membuat kode berulang-ulang.
+
+## PRAKTIKUM 5
+## Langkah 1
+**Ketik atau salin kode program berikut ke dalam fungsi main().**
+
+```dart
+var record = ('first', a: 2, b: true, 'last');
+print(record)
+```
+
+## Langkah 2
+**Silakan coba eksekusi (Run) kode pada langkah 1 tersebut. Apa yang terjadi? Jelaskan! Lalu perbaiki jika terjadi error.**
+<img src="img/prak5_langkah1.png">
+
+Kode diatas menggunakan record, fitur baru di dart versi 3.0 yang memungkinkan kita menyimpan beberapa nilai dengan tipe data yang berbeda dalam satu struktur dara, mirip seperti tuple.
+
+
+## Langkah 3
+**Tambahkan kode program berikut di luar scope void main(), lalu coba eksekusi (Run) kode Anda.**
+```dart
+(int, int) tukar((int, int) record) {
+  var (a, b) = record;
+  return (b, a);
+}
+```
+Jika menggunakan kode diatas saja, maka akan error karena tidak di panggil dalam fungsi main, berikut adalah kode perbaikannya:
+
+<img src="img/prak5_langkah3.png">
+
+## Langkah 4
+**Tambahkan kode program berikut di dalam scope void main(), lalu coba eksekusi (Run) kode Anda.**
+```dart
+// Record type annotation in a variable declaration:
+(String, int) mahasiswa;
+print(mahasiswa);
+```
+**Apa yang terjadi ? Jika terjadi error, silakan perbaiki. Inisialisasi field nama dan NIM Anda pada variabel record mahasiswa di atas. Dokumentasikan hasilnya dan buat laporannya!**
+
+Kode diatas error dikarenakan value dari mahasiswa belum dimasukkan. Berikut adalah perbaikannya
+<img src="img/prak5_langkah4.png">
+
+## Langkah 5
+**Tambahkan kode program berikut di dalam scope void main(), lalu coba eksekusi (Run) kode Anda.**
+
+```dart
+var mahasiswa2 = ('first', a: 2, b: true, 'last');
+
+print(mahasiswa2.$1); // Prints 'first'
+print(mahasiswa2.a); // Prints 2
+print(mahasiswa2.b); // Prints true
+print(mahasiswa2.$2); // Prints 'last'
+```
+
+**Apa yang terjadi ? Jika terjadi error, silakan perbaiki. Gantilah salah satu isi record dengan nama dan NIM Anda, lalu dokumentasikan hasilnya dan buat laporannya!**
+
+<img src="img/prak5_langkah5.png">
+
+Tidak ada error yang terjadi.
+Berikut adalah kode yang sudah dimodifikasi nim dan nama.
+<img src="img/prak5_langkah5-2.png">
