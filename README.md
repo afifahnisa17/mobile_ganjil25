@@ -22,12 +22,8 @@ Berikut daftar materi praktikum setiap minggu (klik link buat lihat isi folderny
 | 2      | Pengantar Bahasa Pemrograman Dart - Bagian 1 🐦          | [Praktikum Minggu 2](./codelab02/README.md)                                               |
 | 3      | Pengantar Bahasa Pemrograman Dart - Bagian 2 📒          | [Praktikum Minggu 3](./codelab03/README.md)                                               |
 | 4     | Pengantar Bahasa Pemrograman Dart - Bagian 3 📑   | [Praktikum Minggu 4](./codelab04/README.md)                                               |
-<!-- | 3      | Control Flow 🎛️            | [Praktikum Minggu 3](./minggu3)                                               |
-| 4      | Null Safety & Late 🌙       | [Praktikum Minggu 4](./minggu4)                                               |
-| 5      | Function & OOP 🛠️           | [Praktikum Minggu 5](./minggu5)                                               |
-| 6      | Collection (List, Map) 📦  | [Praktikum Minggu 6](./minggu6)                                               |
-| 7      | Asynchronous & Future ⏳    | [Praktikum Minggu 7](./minggu7)                                               |
-| 8      | Review & Mini Project 🎮   | [Praktikum Minggu 8](./minggu8)                                               | -->
+| 5     |  Aplikasi Pertama dan Widget Dasar Flutter 🧑‍💻 | [Praktikum Minggu 5](https://github.com/afifahnisa17/flutter-fundamental-part1)                                               |
+
 
 ---
 
