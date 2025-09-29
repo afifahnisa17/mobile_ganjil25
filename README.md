@@ -23,6 +23,7 @@ Berikut daftar materi praktikum setiap minggu (klik link buat lihat isi folderny
 | 3      | Pengantar Bahasa Pemrograman Dart - Bagian 2 📒          | [Praktikum Minggu 3](./codelab03/README.md)                                               |
 | 4     | Pengantar Bahasa Pemrograman Dart - Bagian 3 📑   | [Praktikum Minggu 4](./codelab04/README.md)                                               |
 | 5     |  Aplikasi Pertama dan Widget Dasar Flutter 🧑‍💻 | [Praktikum Minggu 5](https://github.com/afifahnisa17/flutter-fundamental-part1)                                               |
+| 6     | Layout dan Navigasi🎯  | [Praktikum Minggu 6](./codelab06/README.md)                                               |
 
 
 ---
