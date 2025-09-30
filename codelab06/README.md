@@ -32,9 +32,11 @@
 <img src="../codelab06/img/prak2.png">
 
 ## PRAKTIKUM 3
-<img src="../codelab06/img/prak1.png">
+<img src="../codelab06/img/prak3.png">
 
 ## PRAKTIKUM 4
+<img src="../codelab06/img/prak4.png">
+
 ## TUGAS PRAKTIKUM 1
 ## PRAKTIKUM 5
 ## TUGAS PRAKTIKUM 2

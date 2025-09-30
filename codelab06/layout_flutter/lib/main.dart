@@ -72,8 +72,13 @@ class MyApp extends StatelessWidget {
           title: const Text('Flutter layout demo'),
         ),
         body: Center(
-          child: Column(
+          child: ListView(
             children: [
+              Image.asset('assets/bandaneira.jpg',
+                width: 600,
+                height: 240,
+                fit: BoxFit.cover,
+              ),
               titleSection,
               buttonSection,
               textSection,
