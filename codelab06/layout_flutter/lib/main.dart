@@ -56,6 +56,15 @@ class MyApp extends StatelessWidget {
       ],
     );
 
+    Widget textSection = Container(
+    padding: const EdgeInsets.all(32),
+    child: const Text(
+      'Indonesia sudah sejak lama terkenal akan keindahan dan berbagai tempat bersejarahnya. Salah satu kawasan wisata di Indonesia bagian Timur adalah kepulauan Banda. Ada berbagai tempat wisata di Banda Naira yang bisa kamu nikmati keindahannya dan juga mengandung nilai sejarah yang tinggi.'
+      'Pesona Banda Neira memang tidak akan ada yang mampu menolaknya. Keindahan alamnya yang masih terjaga dengan baik membuat siapa saja yang datang pasti ingin tinggal lebih lama. Bukan hanya alamnya saja yang menjadi daya tarik wisata, tetapi ada berbagai tempat wisata lainnya yang tidak kalah menarik.',
+      softWrap: true,
+    ),
+  );
+
     return MaterialApp(
       title: '2341720250 - Afifah Khoirunnisa',
       home: Scaffold(
@@ -67,6 +76,7 @@ class MyApp extends StatelessWidget {
             children: [
               titleSection,
               buttonSection,
+              textSection,
             ]
           )
         ),
