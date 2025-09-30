@@ -29,6 +29,8 @@
 <img src="../codelab06/img/prak1.png">
 
 ## PRAKTIKUM 2
+<img src="../codelab06/img/prak2.png">
+
 ## PRAKTIKUM 3
 ## PRAKTIKUM 4
 ## TUGAS PRAKTIKUM 1
