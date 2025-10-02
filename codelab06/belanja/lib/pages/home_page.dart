@@ -1,3 +1,4 @@
+import 'package:belanja/widgets/footer.dart';
 import 'package:flutter/material.dart';
 import '../models/item.dart';
 
@@ -39,10 +40,11 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text("Daftar Belanja")),
+      
       body: GridView.builder(
         padding: const EdgeInsets.all(10),
         gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-          crossAxisCount: 2,          // 2 kolom
+          crossAxisCount: 2, // 2 kolom
           crossAxisSpacing: 10,
           mainAxisSpacing: 10,
           childAspectRatio: 0.7,
@@ -57,15 +59,17 @@ class HomePage extends StatelessWidget {
             child: Card(
               elevation: 3,
               shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(10)),
+                borderRadius: BorderRadius.circular(10),
+              ),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // Hero untuk gambar produk
                   Hero(
                     tag: item.name,
                     child: ClipRRect(
-                      borderRadius: const BorderRadius.vertical(top: Radius.circular(10)),
+                      borderRadius: const BorderRadius.vertical(
+                        top: Radius.circular(10),
+                      ),
                       child: Image.asset(
                         item.image,
                         height: 100,
@@ -86,7 +90,8 @@ class HomePage extends StatelessWidget {
                         Text("Stock: ${item.stock}"),
                         Row(
                           children: [
-                            const Icon(Icons.star, size: 16, color: Colors.amber),
+                            const Icon(Icons.star,
+                                size: 16, color: Colors.amber),
                             Text(item.rating.toString()),
                           ],
                         ),
@@ -99,6 +104,8 @@ class HomePage extends StatelessWidget {
           );
         },
       ),
+
+      bottomNavigationBar: const AppFooter(),
     );
   }
 }
