@@ -48,5 +48,8 @@
 <img src="../codelab06/img/prak5-2.png">
 
 ## TUGAS PRAKTIKUM 2
+<img src="../codelab06/img/tugas2.png">
+
+<img src="../codelab06/img/tugas2-2.png">
 
 
