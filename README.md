@@ -26,6 +26,7 @@ Berikut daftar materi praktikum setiap minggu (klik link buat lihat isi folderny
 | 6     | Layout dan Navigasi🎯  | [Praktikum Minggu 6](./codelab06/README.md)                                               |
 | 7     | Management Plugin  | [Praktikum Minggu 7](./codelab07/flutter_plugin_pubdev/README.md)                                               |
 | 9     | Kamera 📸  | [Praktikum Minggu 9](./codelab09/README.md)                                               |
+| 9     | Dasar State Management  | [Praktikum Minggu 10](./codelab10/README.md)                                               |
 
 ---
 
