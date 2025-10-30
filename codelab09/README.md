@@ -160,7 +160,8 @@ class DisplayPictureScreen extends StatelessWidget {
   }
 }
 ```
-**Screnshot Hasil**
+**Screnshot Hasil (Tolong Tunggu Sebentar, gif tidak langsung muncul karena perlu di load)**
+
 ![](./assets/praktikum1.gif)
 
 ## Praktikum2
@@ -486,12 +487,15 @@ class FilterItem extends StatelessWidget {
   }
 }
 ```
-**Screnshot Hasil**
+**Screnshot Hasil (Tolong Tunggu Sebentar, gif tidak langsung muncul karena perlu di load)**
+
 ![](./assets/praktikum2.gif)
 
 # Tugas Praktikum
 1. Gabungkan hasil praktikum 1 dengan hasil praktikum 2 sehingga setelah melakukan pengambilan foto, dapat dibuat filter carouselnya!
-- **Screenshot Hasil** 
+
+- **Screenshot Hasil (Tolong Tunggu Sebentar, gif tidak langsung muncul karena perlu di load)** 
+
 ![](./assets/tugas.gif)
 
 2. Jelaskan maksud void async pada praktikum 1?
