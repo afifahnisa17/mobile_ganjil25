@@ -254,3 +254,14 @@ Kode tersebut dijakankan untuk menunjukkan mana task yang selesai dan yang belum
 
 # PRAKTIKUM 3
 # TUGAS PRAKTIKUM 3
+**1. Berdasarkan Praktikum 3 yang telah Anda lakukan, jelaskan maksud dari gambar diagram berikut ini!**
+![](./assets/gambar1.png)
+
+Gambar ini menunjukkan perubahan struktur widget tree ketika aplikasi berpindah halaman menggunakan Navigator.push.
+Awalnya pengguna berada di halaman pembuat plan (PlanCreatorScreen), lalu setelah menambahkan plan, aplikasi berpindah ke halaman utama plan (PlanScreen) — tanpa kehilangan konteks data yang disediakan oleh PlanProvider.
+
+**2. Lakukan capture hasil dari Langkah 14 berupa GIF, kemudian jelaskan apa yang telah Anda buat!**
+
+![](./assets/praktikum3_codelab10.gif)
+
+Pada kesempatan kali ini, saya membuat Master Plan App. Didalam setiap Main task, ada task-task yang menyusun didalamnya. Misal, saya punya main task: coding. Didalamnya ada: FE, BE, dll. Saya bisa mencentang task-task kecil tersebut satu per satu.
