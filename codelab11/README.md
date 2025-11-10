@@ -427,3 +427,92 @@ ElevatedButton(
 ### **9. Capture hasil praktikum Anda berupa GIF dan lampirkan di README. Lalu lakukan commit dengan pesan "W11: Soal 9"**
 
 ![](./assets/praktikum5_codelab11.gif)
+
+### **10. Panggil method handleError() tersebut di ElevatedButton, lalu run. Apa hasilnya? Jelaskan perbedaan kode langkah 1 dan 4!**
+Secara konseptual hasilnya sama, namun perbedaannya adalah:
+- Struktur penulisan: .then().catchError() menggunakan method chaining, sedangkan async/await menggunakan alur imperatif yang lebih linear dan mudah dibaca.
+- Penanganan error: .catchError() menangani error pada Future, sementara try/catch menangani error dengan gaya seperti synchronous code.
+- Finally / completion: .whenComplete() selalu dijalankan setelah Future selesai di chaining, sedangkan finally dijalankan setelah blok try/catch selesai.
+- Keterbacaan untuk banyak Future: async/await lebih mudah dibaca dan dikelola jika ada banyak Future, sementara chaining .then() bisa cepat membingungkan jika kompleks.
+
+
+# PRAKTIKUM 6
+### geolocation.dart
+
+```dart
+import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
+
+class LocationScreen extends StatefulWidget {
+  const LocationScreen({super.key});
+
+  @override
+  _LocationScreenState createState() => _LocationScreenState();
+}
+
+class _LocationScreenState extends State<LocationScreen> {
+  String myPosition = '';
+
+  @override
+  void initState() {
+    super.initState();
+    getPosition().then((Position myPos) {
+      myPosition =
+          'Latitude: ${myPos.latitude.toString()}, Longitude: ${myPos.longitude.toString()}';
+      setState(() {
+        myPosition = myPosition;
+      });
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final myWidget = myPosition == ' '
+        ? const CircularProgressIndicator()
+        : Text(myPosition);
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Current Location - Afifah'),
+      ),
+      body: Center(
+        child: myWidget,
+      ),
+    );
+  }
+
+  Future<Position> getPosition() async {
+    await Geolocator.requestPermission();
+    await Geolocator.isLocationServiceEnabled();
+    Position? position = 
+        await Geolocator.getCurrentPosition();
+    return position;
+  }
+
+}
+```
+
+# SOAL
+### **11. Tambahkan nama panggilan Anda pada tiap properti title sebagai identitas pekerjaan Anda.**
+
+```dart
+Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Current Location - Afifah'),
+      ),
+      body: Center(
+        child: Text(myPosition),
+      ),
+    );
+  }
+```
+
+### **12. Apakah Anda mendapatkan koordinat GPS ketika run di browser? Mengapa demikian?**
+
+![](./assets/gambar2.png)
+
+Tetap bisa jalan di browser. hal tersebut karena AndroidManifest.xml hanya berlaku untuk platform Android, sedangkan kalau kamu run Flutter di browser (Flutter Web), maka yang digunakan adalah API lokasi milik browser, bukan Android permission system.
+
+**Capture hasil praktikum Anda berupa GIF dan lampirkan di README. Lalu lakukan commit dengan pesan "W11: Soal 12".**
+
+![](./assets/praktikum6_codelab11.gif)

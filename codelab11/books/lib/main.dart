@@ -1,3 +1,4 @@
+import 'package:books/geolocation.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:http/http.dart';
@@ -20,7 +21,7 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.blue,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
-      home: const FuturePage(),
+      home: LocationScreen(),
     );
   }
 }
@@ -45,17 +46,7 @@ class _FuturePageState extends State<FuturePage> {
             ElevatedButton(
               child: const Text('GO!'),
               onPressed: () {
-                returnError()
-                .then((value){
-                  setState(() {
-                    result = 'Success';
-                  });
-                })
-                .catchError((onError) {
-                  setState(() {
-                    result = onError.toString();
-                  });
-                }).whenComplete(() => print('Complete'));
+                handleError();
               },
             ),
             const Spacer(),
@@ -79,7 +70,7 @@ class _FuturePageState extends State<FuturePage> {
   Future<int> returnOneAsync() async {
     await Future.delayed(const Duration(seconds: 3));
     return 1;
-  }
+  } 
 
   Future<int> returnTwoAsync() async {
     await Future.delayed(const Duration(seconds: 3));
@@ -141,7 +132,19 @@ class _FuturePageState extends State<FuturePage> {
   }
 
   Future returnError() async {
-    await Future.delayed(const Duration(seconds: 2));
+    await Future.delayed(const Duration(seconds: 10));
     throw Exception('Something terrible happened');
+  }
+
+  Future handleError() async {
+    try {
+      await returnError();
+    } catch (e) {
+      setState(() {
+        result = e.toString();
+      });
+    } finally {
+      print('complete');
+    }
   }
 }
