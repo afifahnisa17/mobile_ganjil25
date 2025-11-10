@@ -103,7 +103,7 @@ class _FuturePageState extends State<FuturePage> {
 ```
 
 # SOAL
-**1. Tambahkan nama panggilan Anda pada title app sebagai identitas hasil pekerjaan Anda.**
+### **1. Tambahkan nama panggilan Anda pada title app sebagai identitas hasil pekerjaan Anda.**
 
 ```dart
 lass _FuturePageState extends State<FuturePage> {
@@ -140,7 +140,7 @@ lass _FuturePageState extends State<FuturePage> {
   }
   ```
 
-  **2. Carilah judul buku favorit Anda di Google Books, lalu ganti ID buku pada variabel path di kode tersebut. Caranya ambil di URL browser Anda seperti gambar berikut ini.**
+### **2. Carilah judul buku favorit Anda di Google Books, lalu ganti ID buku pada variabel path di kode tersebut. Caranya ambil di URL browser Anda seperti gambar berikut ini.**
   ```dart
   Future<Response> getData() async {
     const autority = 'www.googleapis.com';
@@ -150,16 +150,17 @@ lass _FuturePageState extends State<FuturePage> {
   }
   ```
 
-  **Kemudian cobalah akses di browser URI tersebut dengan lengkap seperti ini. Jika menampilkan data JSON, maka Anda telah berhasil. Lakukan capture milik Anda dan tulis di README pada laporan praktikum. Lalu lakukan commit dengan pesan "W11: Soal 2".**
-    <img src="/assets/gambar1.png">
+### **Kemudian cobalah akses di browser URI tersebut dengan lengkap seperti ini. Jika menampilkan data JSON, maka Anda telah berhasil. Lakukan capture milik Anda dan tulis di README pada laporan praktikum. Lalu lakukan commit dengan pesan "W11: Soal 2".**
 
-**3. Jelaskan maksud kode langkah 5 tersebut terkait substring dan catchError!**
+  <img src="/assets/gambar1.png">
+
+### **3. Jelaskan maksud kode langkah 5 tersebut terkait substring dan catchError!**
 
 Dalam kode tersebut, fungsi substring(0, 450) digunakan untuk mengambil sebagian teks dari hasil respons API, yaitu 450 karakter pertama dari data yang diterima melalui value.body. Tujuannya agar teks yang ditampilkan di layar tidak terlalu panjang, karena respons dari API biasanya berbentuk JSON dengan ribuan karakter. Namun, pemanggilan substring seperti ini harus hati-hati, karena jika panjang string kurang dari 450 karakter, maka akan terjadi error RangeError (indeks di luar batas). Oleh karena itu, sebaiknya dilakukan pengecekan panjang string terlebih dahulu sebelum mengambil substring.
 
 Sementara itu, bagian .catchError((_) { ... }) berfungsi untuk menangani kesalahan (error handling) yang mungkin terjadi selama proses asynchronous Future, seperti ketika koneksi internet terputus, URL salah, atau terjadi error lain pada bagian .then(). Jika terjadi kesalahan, blok catchError akan dijalankan dan variabel result diubah menjadi teks seperti 'An error occured', kemudian antarmuka pengguna diperbarui dengan setState() agar pesan tersebut muncul di layar. Dengan demikian, pengguna tetap mendapatkan umpan balik yang jelas ketika terjadi kegagalan. Secara keseluruhan, kombinasi substring dan catchError ini menunjukkan bagaimana Flutter menangani data dari API secara aman dan responsif terhadap kemungkinan error.
 
-**Capture hasil praktikum Anda berupa GIF dan lampirkan di README. Lalu lakukan commit dengan pesan "W11: Soal 3".**
+### **Capture hasil praktikum Anda berupa GIF dan lampirkan di README. Lalu lakukan commit dengan pesan "W11: Soal 3".**
 
 ![](./assets/praktikum1_codelab11.gif)
 
@@ -268,10 +269,25 @@ class _FuturePageState extends State<FuturePage> {
 ```
 
 # SOAL
-## **4. Jelaskan maksud kode langkah 1 dan 2 tersebut!**
+### **4. Jelaskan maksud kode langkah 1 dan 2 tersebut!**
 
 Kode tersebut berfungsi untuk menunjukkan cara kerja proses asynchronous di Dart menggunakan Future dan async/await. Tiga fungsi — returnOneAsync(), returnTwoAsync(), dan returnThreeAsync() — masing-masing menunggu selama tiga detik menggunakan Future.delayed() sebelum mengembalikan nilai 1, 2, dan 3. Fungsi count() kemudian memanggil ketiga fungsi tersebut secara berurutan dengan await, menjumlahkan hasilnya menjadi total 6, lalu menampilkannya di antarmuka pengguna dengan setState(). Tujuan utamanya adalah mensimulasikan proses yang memerlukan waktu, seperti pengambilan data dari API, dan menunjukkan bagaimana Flutter menunggu hasil secara bertahap sebelum memperbarui tampilan.
 
-## **Capture hasil praktikum Anda berupa GIF dan lampirkan di README. Lalu lakukan commit dengan pesan "W11: Soal 4".**
+### **Capture hasil praktikum Anda berupa GIF dan lampirkan di README. Lalu lakukan commit dengan pesan "W11: Soal 4".**
 
 ![](./assets/praktikum2_codelab11.gif)
+
+# PRAKTIKUM 3
+## SOAL
+### **5. Jelaskan maksud kode langkah 2 tersebut!**
+
+Kode ini digunakan untuk menunjukkan bagaimana kita bisa membuat dan mengendalikan Future secara manual.
+Alih-alih menulis return 42 langsung di dalam fungsi async, Completer memungkinkan kita untuk:
+
+- membuat Future kosong dulu,
+- lalu menyelesaikannya di waktu yang kita tentukan (misalnya setelah delay, event lain, atau kondisi tertentu).
+
+### **Capture hasil praktikum Anda berupa GIF dan lampirkan di README. Lalu lakukan commit dengan pesan "W11: Soal 5".**
+
+![](./assets/praktikum3_codelab11.gif)
+
