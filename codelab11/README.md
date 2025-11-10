@@ -516,3 +516,12 @@ Tetap bisa jalan di browser. hal tersebut karena AndroidManifest.xml hanya berla
 **Capture hasil praktikum Anda berupa GIF dan lampirkan di README. Lalu lakukan commit dengan pesan "W11: Soal 12".**
 
 ![](./assets/praktikum6_codelab11.gif)
+
+# PRAKTIKUM 7
+# SOAL
+### **13. Apakah ada perbedaan UI dengan praktikum sebelumnya? Mengapa demikian?**
+Perbedaan utama antara kode geolocation kamu yang sekarang dengan versi sebelumnya sebenarnya bukan pada hasil akhirnya, melainkan pada cara Flutter mengelola proses asynchronous dan pembaruan UI. Versi sekarang menggunakan FutureBuilder, di mana Flutter otomatis membangun ulang tampilan berdasarkan status Future (misalnya menampilkan indikator loading saat waiting dan hasil lokasi saat done), sehingga kamu tidak perlu memanggil setState() secara manual. Sebaliknya, versi sebelumnya menggunakan async/await dan setState, yang memberi kamu kendali penuh untuk menentukan kapan loading dimulai dan kapan hasil ditampilkan, tapi butuh variabel tambahan seperti isLoading. Jadi, meskipun terlihat hanya berbeda di bagian loading, mekanisme pengelolaan state dan waktu pembaruan UI-nya berbeda secara mendasar.
+
+**Capture hasil praktikum Anda berupa GIF dan lampirkan di README. Lalu lakukan commit dengan pesan "W11: Soal 13".**
+
+![](./assets/praktikum7_codelab11.gif)
