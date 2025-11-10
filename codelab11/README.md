@@ -385,3 +385,45 @@ ElevatedButton(child: const Text('GO!'), onPressed: () {
 ### **7. Capture hasil praktikum Anda berupa GIF dan lampirkan di README. Lalu lakukan commit dengan pesan "W11: Soal 7".**
 
 ![](./assets/praktikum4_codelab11.gif)
+
+### **8. Jelaskan maksud perbedaan kode langkah 1 dan 4!**
+
+Keduanya sama-sama menjalankan banyak Future sekaligus dan menunggu hasil semuanya.
+Perbedaan utamanya adalah:
+
+- Gunakan Future.wait() kalau kamu sudah tahu semua Future-nya di awal (lebih simpel, tanpa import tambahan).
+- Gunakan FutureGroup kalau kamu ingin menambahkan Future secara bertahap, misalnya dalam loop, event listener, atau kondisi dinamis sebelum akhirnya “menutup grup”.
+
+# PRAKTIKUM 5
+### main.dart
+
+```dart
+//menambahkan kode ini
+Future returnError() async {
+    await Future.delayed(const Duration(seconds: 2));
+    throw Exception('Something terrible happened');
+  }
+
+// mengganti bagian ElevatedButton
+ElevatedButton(
+              child: const Text('GO!'),
+              onPressed: () {
+                returnError()
+                .then((value){
+                  setState(() {
+                    result = 'Success';
+                  });
+                })
+                .catchError((onError) {
+                  setState(() {
+                    result = onError.toString();
+                  });
+                }).whenComplete(() => print('Complete'));
+              },
+            ),
+```
+
+# SOAL
+### **9. Capture hasil praktikum Anda berupa GIF dan lampirkan di README. Lalu lakukan commit dengan pesan "W11: Soal 9"**
+
+![](./assets/praktikum5_codelab11.gif)

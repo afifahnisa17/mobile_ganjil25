@@ -42,9 +42,22 @@ class _FuturePageState extends State<FuturePage> {
         child: Column(
           children: [
             const Spacer(),
-            ElevatedButton(child: const Text('GO!'), onPressed: () {
-              returnFG();
-            }),
+            ElevatedButton(
+              child: const Text('GO!'),
+              onPressed: () {
+                returnError()
+                .then((value){
+                  setState(() {
+                    result = 'Success';
+                  });
+                })
+                .catchError((onError) {
+                  setState(() {
+                    result = onError.toString();
+                  });
+                }).whenComplete(() => print('Complete'));
+              },
+            ),
             const Spacer(),
             Text(result),
             const Spacer(),
@@ -97,20 +110,20 @@ class _FuturePageState extends State<FuturePage> {
   }
 
   Future calculate() async {
-    await Future.delayed(const Duration(seconds : 5));
+    await Future.delayed(const Duration(seconds: 5));
     completer.complete(42);
   }
 
   Future calculate2() async {
     try {
-      await new Future.delayed(const Duration(seconds : 5));
+      await new Future.delayed(const Duration(seconds: 5));
       completer.complete(42);
     } catch (_) {
       completer.completeError({});
     }
   }
 
-  void returnFG(){
+  void returnFG() {
     FutureGroup<int> futureGroup = FutureGroup<int>();
     futureGroup.add(returnOneAsync());
     futureGroup.add(returnTwoAsync());
@@ -125,5 +138,10 @@ class _FuturePageState extends State<FuturePage> {
         result = total.toString();
       });
     });
+  }
+
+  Future returnError() async {
+    await Future.delayed(const Duration(seconds: 2));
+    throw Exception('Something terrible happened');
   }
 }
