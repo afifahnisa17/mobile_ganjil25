@@ -525,3 +525,14 @@ Perbedaan utama antara kode geolocation kamu yang sekarang dengan versi sebelumn
 **Capture hasil praktikum Anda berupa GIF dan lampirkan di README. Lalu lakukan commit dengan pesan "W11: Soal 13".**
 
 ![](./assets/praktikum7_codelab11.gif)
+
+### **14. Apakah ada perbedaan UI dengan langkah sebelumnya? Mengapa demikian?**
+
+Perbedaan utama antara kode awal sebelum ada tambahan error handling dan versi yang sekarang ini ada pada penanganan hasil Future di bagian FutureBuilder, bukan pada cara pengambilan lokasinya.
+
+Pada versi awal, kode hanya menampilkan hasil ketika connectionState == done tanpa memeriksa apakah Future menghasilkan data valid atau error — jadi kalau terjadi error (misalnya user menolak izin lokasi atau layanan lokasi dimatikan), aplikasi bisa menampilkan null atau bahkan error di konsol tanpa pesan ke pengguna.
+
+
+**Capture hasil praktikum Anda berupa GIF dan lampirkan di README. Lalu lakukan commit dengan pesan "W11: Soal 14".**
+
+![](./assets/praktikum7_codelab11.gif)
