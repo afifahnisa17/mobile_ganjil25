@@ -351,3 +351,37 @@ calculate2() mengontrol logika penundaan dan penyelesaian, sedangkan tombol GO! 
 ### **Capture hasil praktikum Anda berupa GIF dan lampirkan di README. Lalu lakukan commit dengan pesan "W11: Soal 6".**
 
 ![](./assets/praktikum3-2_codelab11.gif)
+
+# PRAKTIKUM 4
+
+### main.dart
+
+```dart
+//menambahkan kode ini
+void returnFG(){
+    FutureGroup<int> futureGroup = FutureGroup<int>();
+    futureGroup.add(returnOneAsync());
+    futureGroup.add(returnTwoAsync());
+    futureGroup.add(returnThreeAsync());
+    futureGroup.close();
+    futureGroup.future.then((List<int> value) {
+      int total = 0;
+      for (var element in value) {
+        total += element;
+      }
+      setState(() {
+        result = total.toString();
+      });
+    });
+  }
+
+// mengganti bagian on pressed
+ElevatedButton(child: const Text('GO!'), onPressed: () {
+  returnFG();
+}),
+```
+
+# SOAL
+### **7. Capture hasil praktikum Anda berupa GIF dan lampirkan di README. Lalu lakukan commit dengan pesan "W11: Soal 7".**
+
+![](./assets/praktikum4_codelab11.gif)
