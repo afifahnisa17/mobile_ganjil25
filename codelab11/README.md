@@ -162,3 +162,116 @@ Sementara itu, bagian .catchError((_) { ... }) berfungsi untuk menangani kesalah
 **Capture hasil praktikum Anda berupa GIF dan lampirkan di README. Lalu lakukan commit dengan pesan "W11: Soal 3".**
 
 ![](./assets/praktikum1_codelab11.gif)
+
+# PRAKTIKUM 2
+
+```dart
+import 'package:flutter/material.dart';
+import 'dart:async';
+import 'package:http/http.dart';
+import 'package:http/http.dart' as http;
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  // This widget is the root of your application.
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Flutter Demo',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+        visualDensity: VisualDensity.adaptivePlatformDensity,
+      ),
+      home: const FuturePage(),
+    );
+  }
+}
+
+class FuturePage extends StatefulWidget {
+  const FuturePage({super.key});
+
+  @override
+  State<FuturePage> createState() => _FuturePageState();
+}
+
+class _FuturePageState extends State<FuturePage> {
+  String result = '';
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: const Text('Back from the Future - Afifah')),
+      body: Center(
+        child: Column(
+          children: [
+            const Spacer(),
+            ElevatedButton(child: const Text('GO!'), onPressed: () {
+              // setState(() {});
+              // getData()
+              // .then((value){
+              //   result = value.body.toString().substring(0, 450);
+              //   setState(() {});
+              // }).catchError((_){
+              //   result = 'An error occured';
+              //   setState(() {
+              //   });
+              // });
+              count();
+            }),
+            const Spacer(),
+            Text(result),
+            const Spacer(),
+            const CircularProgressIndicator(),
+            const Spacer(),
+          ],
+        ),
+      ),
+    );
+  }
+
+  Future<Response> getData() async {
+    const autority = 'www.googleapis.com';
+    const path = '/books/v1/volumes/e-ZDDwAAQBAJ';
+    Uri url = Uri.https(autority, path);
+    return http.get(url);
+  }
+
+  Future<int> returnOneAsync() async {
+    await Future.delayed(const Duration(seconds: 3));
+    return 1;
+  }
+
+  Future<int> returnTwoAsync() async {
+    await Future.delayed(const Duration(seconds: 3));
+    return 2;
+  }
+
+  Future<int> returnThreeAsync() async {
+    await Future.delayed(const Duration(seconds: 3));
+    return 3;
+  }
+
+  Future count() async {
+    int total = 0;
+    total = await returnOneAsync();
+    total += await returnTwoAsync();
+    total += await returnThreeAsync();
+    setState(() {
+      result = total.toString();
+    });
+  }
+}
+```
+
+# SOAL
+## **4. Jelaskan maksud kode langkah 1 dan 2 tersebut!**
+
+Kode tersebut berfungsi untuk menunjukkan cara kerja proses asynchronous di Dart menggunakan Future dan async/await. Tiga fungsi — returnOneAsync(), returnTwoAsync(), dan returnThreeAsync() — masing-masing menunggu selama tiga detik menggunakan Future.delayed() sebelum mengembalikan nilai 1, 2, dan 3. Fungsi count() kemudian memanggil ketiga fungsi tersebut secara berurutan dengan await, menjumlahkan hasilnya menjadi total 6, lalu menampilkannya di antarmuka pengguna dengan setState(). Tujuan utamanya adalah mensimulasikan proses yang memerlukan waktu, seperti pengambilan data dari API, dan menunjukkan bagaimana Flutter menunggu hasil secara bertahap sebelum memperbarui tampilan.
+
+## **Capture hasil praktikum Anda berupa GIF dan lampirkan di README. Lalu lakukan commit dengan pesan "W11: Soal 4".**
+
+![](./assets/praktikum2_codelab11.gif)
