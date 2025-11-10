@@ -536,3 +536,44 @@ Pada versi awal, kode hanya menampilkan hasil ketika connectionState == done tan
 **Capture hasil praktikum Anda berupa GIF dan lampirkan di README. Lalu lakukan commit dengan pesan "W11: Soal 14".**
 
 ![](./assets/praktikum7_codelab11.gif)
+
+# PRAKTIKUM 8
+# SOAL
+### **15. Tambahkan nama panggilan Anda pada tiap properti title sebagai identitas pekerjaan Anda.**
+
+```dart
+@override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      backgroundColor: color,
+      appBar: AppBar(title: const Text('Navigation First - Afifah')),
+      body: Center(
+        child: ElevatedButton(
+          child: const Text('Change Color'),
+          onPressed: () {
+            _navigateAndGetColor(context);
+          },
+        ),
+      ),
+    );
+  }
+```
+### **16. Cobalah klik setiap button, apa yang terjadi ? Mengapa demikian ?**
+
+Setelah menekan tombol 'Change Color', kita akan diarahkan ke Navigation Second dimana kita diberi pilihan untuk mengganti background merah, hijau, dan biru. 
+
+### **Gantilah 3 warna pada langkah 5 dengan warna favorit Anda!**
+
+Saya mengganti warna pink, orange dan cokelat
+
+### **Capture hasil praktikum Anda berupa GIF dan lampirkan di README. Lalu lakukan commit dengan pesan "W11: Soal 16".**
+
+![](./assets/praktikum8_codelab11.gif)
+
+# PRAKTIKUM 9
+# SOAL
+### **17. Soal 17. Cobalah klik setiap button, apa yang terjadi ? Mengapa demikian ?**
+
+### **Gantilah 3 warna pada langkah 3 dengan warna favorit Anda!**
+
+### **Capture hasil praktikum Anda berupa GIF dan lampirkan di README. Lalu lakukan commit dengan pesan "W11: Soal 17".**
