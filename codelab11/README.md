@@ -277,7 +277,34 @@ Kode tersebut berfungsi untuk menunjukkan cara kerja proses asynchronous di Dart
 
 ![](./assets/praktikum2_codelab11.gif)
 
-# PRAKTIKUM 3
+# PRAKTIKUM 3 - 1
+### main.dart
+
+```dart
+import 'package:async/async.dart';
+
+//tambahan di method class _FuturePageState
+late Completer completer;
+
+Future getNumber() {
+  completer = Completer<int>();
+  calculate();
+  return completer.future;
+}
+
+Future calculate() async {
+  await Future.delayed(const Duration(seconds : 5));
+  completer.complete(42);
+}
+
+//ganti isi pada onPressed
+getNumber().then((value) {
+  setState(() {
+    result = value.toString();
+  });
+});
+```
+
 ## SOAL
 ### **5. Jelaskan maksud kode langkah 2 tersebut!**
 
@@ -291,3 +318,36 @@ Alih-alih menulis return 42 langsung di dalam fungsi async, Completer memungkink
 
 ![](./assets/praktikum3_codelab11.gif)
 
+# PRAKTIKUM 3 - 2
+### main.dart
+
+```dart
+// buat mthod calculate 2
+Future calculate2() async {
+    try {
+      await new Future.delayed(const Duration(seconds : 5));
+      completer.complete(42);
+    } catch (_) {
+      completer.completeError({});
+    }
+  }
+
+//Ganti Kode On Pressed
+getNumber().then((value) {
+  setState(() {
+    result = value.toString();
+  });
+}).catchError((e) {
+  result = 'An error occurred';
+});
+```
+
+# SOAL
+### **6. Jelaskan maksud perbedaan kode langkah 2 dengan langkah 5-6 tersebut!**
+
+Kode ini memperlihatkan bagaimana Completer bisa digunakan untuk membuat dan menyelesaikan Future secara manual, baik dengan hasil sukses maupun error.
+calculate2() mengontrol logika penundaan dan penyelesaian, sedangkan tombol GO! menunjukkan bagaimana Flutter menunggu hasil Future tersebut, memperbarui tampilan UI sesuai apakah proses berhasil atau gagal.
+
+### **Capture hasil praktikum Anda berupa GIF dan lampirkan di README. Lalu lakukan commit dengan pesan "W11: Soal 6".**
+
+![](./assets/praktikum3-2_codelab11.gif)
