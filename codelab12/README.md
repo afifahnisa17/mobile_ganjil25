@@ -25,6 +25,7 @@
 
 ---
 # PRAKTIKUM 1
+### main.dart
 
 ```dart
 import 'package:flutter/material.dart';
@@ -62,6 +63,27 @@ class _StreamHomePageState extends State<StreamHomePage> {
 }
 ```
 
+### stream.dart
+
+```dart
+import 'package:flutter/material.dart';
+
+class ColorStream{
+  final List<Color> colors = [
+    Colors.blueGrey,
+    Colors.amber,
+    Colors.deepPurple,
+    Colors.lightBlue,
+    Colors.teal,
+    Colors.indigo,
+    Colors.pink,
+    Colors.orange,
+    Colors.green,
+    Colors.red
+  ];
+}
+```
+
 # SOAL
 ### 1. Tambahkan nama panggilan Anda pada title app sebagai identitas hasil pekerjaan Anda. Gantilah warna tema aplikasi sesuai kesukaan Anda.
 
@@ -74,6 +96,16 @@ class _StreamHomePageState extends State<StreamHomePage> {
       home: const StreamHomePage(),
     );
   }
+```
+
+### 2. Tambahkan 5 warna lainnya sesuai keinginan Anda pada variabel colors tersebut.
+
+```dart
+    Colors.indigo,
+    Colors.pink,
+    Colors.orange,
+    Colors.green,
+    Colors.red
 ```
 
 
