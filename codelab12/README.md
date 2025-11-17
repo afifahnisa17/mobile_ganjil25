@@ -151,3 +151,13 @@ Pada langkah ini, fungsi membuat angka random dari 0 sampai 9. Angka tersebut ke
 
 ### Capture hasil praktikum Anda berupa GIF dan lampirkan di README.
 ![](./assets/Praktikum2_codelab12.gif)
+
+### Soal 7. Jelaskan maksud kode langkah 13 sampai 15 tersebut!
+
+Pemanggilan addError() mengirimkan sebuah error event ke dalam stream menggunakan controller.sink.addError("error"). Artinya, aliran data tidak mengirim angka seperti biasa, tetapi mengirim sinyal bahwa terjadi kesalahan.
+
+Bagian .onError((error) { ... }) adalah error handler pada sisi penerima stream. Ketika stream menerima error tadi, blok ini langsung dijalankan sebagai respon terhadap event error tersebut.
+
+Dalam contoh ini, saat error muncul, nilai lastNumber diubah menjadi -1 lewat setState(), sehingga UI bisa menampilkan keadaan bahwa terjadi kesalahan.
+
+
