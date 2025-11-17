@@ -284,4 +284,131 @@ Kode StreamBuilder tersebut berfungsi untuk membangun tampilan UI berdasarkan da
 ### **Capture hasil praktikum Anda berupa GIF dan lampirkan di README.**
 ![](./assets/praktikum6_codelab12.gif)
 
+# PRAKTIKUM 7
+### main.dart
+
+```dart
+import 'package:flutter/material.dart';
+import 'random_screen.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  // This widget is the root of your application.
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'BLOC - Afifah',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: const RandomScreen(),
+    );
+  }
+}
+```
+
+### random_bloc.dart
+
+```dart
+import 'dart:async';
+import 'dart:math';
+
+class RandomNumberBloc{
+  final _generateRandomController = StreamController<void>();
+  final _randomNumberController = StreamController<int>();
+  Sink<void> get generateRandom => _generateRandomController.sink;
+  Stream<int> get randomNumber=> _randomNumberController.stream;
+
+  RandomNumberBloc(){
+    _generateRandomController.stream.listen((_){
+      final random = Random().nextInt(100);
+      _randomNumberController.sink.add(random);
+    });
+  }
+
+  void dispose(){
+    _generateRandomController.close();
+    _randomNumberController.close();
+  }
+}
+```
+
+### random_screen.dart
+
+```dart
+import 'package:flutter/material.dart';
+import 'random_bloc.dart';
+
+class RandomScreen extends StatefulWidget {
+  const RandomScreen({super.key});
+
+  @override
+  State<RandomScreen> createState() => _RandomScreenState();
+}
+
+class _RandomScreenState extends State<RandomScreen> {
+  final _bloc = RandomNumberBloc();
+
+  @override
+  void dispose() {
+    _bloc.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text('Random Number - Afifah')),
+      body: Center(
+        child: StreamBuilder<int>(
+          stream: _bloc.randomNumber,
+          initialData: 0,
+          builder: (context, snapshot) {
+            return Text(
+              'Random Number: ${snapshot.data}',
+              style: const TextStyle(fontSize: 24),
+            );
+          },
+        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          _bloc.generateRandom.add(null);
+        },
+        child: const Icon(Icons.refresh),
+      ),
+    );
+
+  }
+}
+```
+
+### 13. Jelaskan maksud praktikum ini ! Dimanakah letak konsep pola BLoC-nya**
+Tujuan dari praktikum ini adalah membuat aplikasi Flutter sederhana yang menghasilkan angka acak dan menampilkannya di UI.
+
+Letak pola BLoC-nya:
+1. File BLoC: random_bloc.dart
+    - Inti BLoC: kelas RandomNumberBloc.
+    - Input (Event/Sink): _generateRandomController — expose sebagai Sink<void> get generateRandom. UI mengirim event (di sini null) ke sink ini untuk meminta angka baru.
+    - Output (State/Stream): _randomNumberController — expose sebagai Stream<int> get randomNumber. Bloc menambahkan nilai random ke sini sehingga UI dapat berlangganan.
+    - Logika bisnis: di konstruktor RandomNumberBloc() ada listener pada _generateRandomController.stream yang ketika menerima event membuat angka acak Random().nextInt(100) dan add ke _randomNumberController.
+    - Lifecycle: method dispose() menutup controller untuk mencegah memory leak.
+
+2. File UI: random_screen.dart
+    - final _bloc = RandomNumberBloc(); — state membuat instance bloc.
+    - StreamBuilder<int>( stream: _bloc.randomNumber, ...) — UI mendengarkan randomNumber stream dan rebuild saat ada nilai baru.
+    - FloatingActionButton memanggil _bloc.generateRandom.add(null); untuk memicu pembuatan angka baru.
+    - dispose() pada State memanggil _bloc.dispose() untuk menutup resources.
+
+
+### **Capture hasil praktikum Anda berupa GIF dan lampirkan di README.**
+![](./assets/praktikum7_codelab12.gif)
+
+
 
