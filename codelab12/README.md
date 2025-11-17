@@ -130,3 +130,24 @@ Index warna dibuat berulang (loop) dengan memakai operasi modulo.
 listen digunakan ketika kamu ingin mendengarkan Stream secara terus-menerus tanpa menghentikan alur program. Begitu ada data baru, callback-nya langsung dipanggil. Ini cocok kalau kamu ingin Stream berjalan di “background” dan UI tetap responsif, seperti contohmu yang langsung mengubah warna setiap kali Stream mengirim warna baru.
 
 Sebaliknya, await for digunakan jika kamu ingin menunggu data Stream secara berurutan dalam alur async. Kode setelah await for tidak akan berjalan sampai seluruh Stream selesai. Ini seperti kamu “menonton” Stream dari awal sampai selesai, satu data per satu data, secara teratur. Jadi await for memblokir fungsi async tersebut sampai Stream selesai, sedangkan listen tidak memblokir dan membiarkan program berjalan sambil menerima event.
+
+### 6. Jelaskan maksud kode langkah 8 dan 10 tersebut!
+Langkah 8:
+Pada langkah ini, widget sedang menyiapkan stream yang akan didengarkan.
+1. numberStream = NumberStream();
+Membuat objek stream khusus yang kamu rancang untuk mengirim angka.
+2. numberStreamController = numberStream.controller;
+Mengambil controller, yaitu alat untuk mengatur kapan data baru dikirim ke stream.
+3. Stream stream = numberStreamController.stream;
+Mengambil aliran datanya (stream-nya).
+4. stream.listen((event) { ... })
+Mulai mendengarkan stream.
+Setiap ada angka baru yang dikirim (misalnya dari langkah 10), fungsi listen akan dipanggil.
+5. setState(() { lastNumber = event; });
+Angka yang diterima (event) disimpan ke variabel lastNumber, lalu UI diperbarui.
+
+Langkah 10:
+Pada langkah ini, fungsi membuat angka random dari 0 sampai 9. Angka tersebut kemudian dikirim ke stream melalui addNumberToSink(). Artinya, setiap kali fungsi ini dipanggil (misalnya saat menekan tombol), akan ada angka baru yang masuk ke stream.
+
+### Capture hasil praktikum Anda berupa GIF dan lampirkan di README.
+![](./assets/Praktikum2_codelab12.gif)
