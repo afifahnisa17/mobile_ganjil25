@@ -122,4 +122,8 @@ Fungsi ini mengirim satu warna setiap 1 detik. yield* hanya meneruskan warna-war
 Index warna dibuat berulang (loop) dengan memakai operasi modulo.
 
 
+### 4. Capture hasil praktikum Anda berupa GIF dan lampirkan di README.
 
+![](./assets/praktikum1_codelab12.gif)
+
+### 5. Jelaskan perbedaan menggunakan listen dan await for (langkah 9) !
