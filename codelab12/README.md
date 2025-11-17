@@ -174,3 +174,14 @@ Kode tersebut membuat *listener* pada `initState()` untuk memantau setiap data b
 
 ### Capture hasil praktikum Anda berupa GIF dan lampirkan di README.
 ![](./assets/praktikum4_codelab12.gif)
+
+### 10. Jelaskan mengapa error itu bisa terjadi?
+Error “Bad state: Stream has already been listened to.” muncul karena Stream yang bersifat single-subscription hanya boleh di-listen sekali. Jika mencoba memanggil .listen() lagi pada stream yang sama, Flutter langsung melempar error tersebut.
+
+### 11. Jelaskan mengapa hal itu bisa terjadi ?
+Itu terjadi karena *stream*-nya diubah menjadi **broadcast stream**, lalu dipasang **dua listener** (`subscription` dan `subscription2`) yang **keduanya menerima data yang sama**. Pada *single-subscription stream*, hanya satu listener yang boleh mendengarkan, tetapi ketika di-*broadcast*, setiap listener baru akan menerima semua event yang masuk. Jadi, setiap kali `addRandomNumber()` mengirim satu angka, stream broadcast akan menyalurkannya ke dua listener, sehingga callback dijalankan **dua kali**, dan nilai `values` bertambah dua kali untuk setiap event yang sama.
+
+### Capture hasil praktikum Anda berupa GIF dan lampirkan di README.
+![](./assets/praktikum5_codelab12.gif)
+
+
