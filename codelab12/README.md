@@ -160,4 +160,11 @@ Bagian .onError((error) { ... }) adalah error handler pada sisi penerima stream.
 
 Dalam contoh ini, saat error muncul, nilai lastNumber diubah menjadi -1 lewat setState(), sehingga UI bisa menampilkan keadaan bahwa terjadi kesalahan.
 
+### 8. Jelaskan maksud kode langkah 1-3 tersebut!
+
+`StreamTransformer` digunakan untuk memproses aliran data **sebelum** data itu diterima oleh `listen()`. Pada contoh tersebut, setiap angka yang masuk akan di-*handle* oleh `handleData`, lalu diubah menjadi `value * 10` sebelum dikirim ke `sink`, sehingga listener selalu menerima nilai yang sudah dikali sepuluh. Jika terjadi error pada stream, `handleError` akan mengganti error itu dengan nilai `-1` agar aliran tetap dapat diproses tanpa crash. Ketika stream selesai, `handleDone` akan menutup sink. Setelah itu, barulah stream yang sudah ditransformasi tersebut didengarkan oleh `listen`, sehingga widget dapat memperbarui `lastNumber` sesuai hasil transformasi atau error yang sudah diubah menjadi `-1`.
+
+
+### Capture hasil praktikum Anda berupa GIF dan lampirkan di README.
+![](./assets/praktikum3_codelab12.gif)
 
