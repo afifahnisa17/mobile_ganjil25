@@ -168,3 +168,9 @@ Dalam contoh ini, saat error muncul, nilai lastNumber diubah menjadi -1 lewat se
 ### Capture hasil praktikum Anda berupa GIF dan lampirkan di README.
 ![](./assets/praktikum3_codelab12.gif)
 
+
+### 9. Jelaskan maksud kode langkah 2, 6 dan 8 tersebut!
+Kode tersebut membuat *listener* pada `initState()` untuk memantau setiap data baru yang masuk ke stream, lalu memperbarui nilai `lastNumber` melalui `setState()` setiap kali ada event, menangani error dengan mengubah nilai menjadi `-1`, dan menampilkan pesan saat stream selesai lewat `onDone`. Pada fungsi `addRandomNumber()`, angka acak antara 0–9 dibuat dan hanya dikirim ke stream jika controllernya belum ditutup; jika stream sudah ditutup, nilai `lastNumber` langsung diubah menjadi `-1` sebagai tanda bahwa stream tidak bisa menerima data lagi. Dengan alur ini, widget bisa terus memperbarui tampilan berdasarkan data stream sambil tetap aman dari error karena stream yang sudah ditutup.
+
+### Capture hasil praktikum Anda berupa GIF dan lampirkan di README.
+![](./assets/praktikum4_codelab12.gif)
