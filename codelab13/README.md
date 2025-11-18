@@ -93,9 +93,133 @@ class _MyHomePageState extends State<MyHomePage> {
     return MaterialApp(
       title: 'Flutter JSON Demo - Afifah',
       theme: ThemeData(
-        primarySwatch: Colors.purple,
+        scaffoldBackgroundColor: Colors.white, // background putih
+        appBarTheme: const AppBarTheme(
+          backgroundColor: Colors.purple, // AppBar biru
+          elevation: 0,
+          titleTextStyle: TextStyle(
+            color: Colors.white,         
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
       ),
       home: const MyHomePage(),
     );
   }
 ```
+
+# PRAKTIKUM 1 - 2
+
+### main.dart
+
+```dart
+import 'package:flutter/material.dart';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Flutter JSON Demo - Afifah',
+      theme: ThemeData(
+        scaffoldBackgroundColor: Colors.white, // background putih
+        appBarTheme: const AppBarTheme(
+          backgroundColor: Colors.purple, // AppBar biru
+          elevation: 0,
+          titleTextStyle: TextStyle(
+            color: Colors.white,         
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      ),
+      home: const MyHomePage(),
+    );
+  }
+}
+
+class MyHomePage extends StatefulWidget {
+  const MyHomePage({super.key});
+
+  @override
+  State<MyHomePage> createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  String pizzaString = ' ';
+
+  @override
+  void initState() {
+    super.initState();
+    readJsonFile();
+  }
+
+  Future readJsonFile() async {
+    String myString =
+        await DefaultAssetBundle.of(context).loadString('assets/pizzalist.json');
+    setState(() {
+      pizzaString = myString;
+    });
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: const Text('Flutter JSON Demo - Afifah')),
+      body: Text(pizzaString),
+    );
+  }
+}
+
+```
+
+### pizzalist.json
+
+```json
+[ 
+    { 
+      "id": 1, 
+      "pizzaName": "Margherita", 
+      "description": "Pizza with tomato, fresh mozzarella and basil",
+      "price": 8.75, 
+      "imageUrl": "images/margherita.png" 
+    }, 
+    { 
+      "id": 2, 
+      "pizzaName": "Marinara", 
+      "description": "Pizza with tomato, garlic and oregano",
+      "price": 7.50, 
+      "imageUrl": "images/marinara.png"  
+    }, 
+    { 
+      "id": 3, 
+      "pizzaName": "Napoli", 
+      "description": "Pizza with tomato, garlic and anchovies",
+      "price": 9.50, 
+      "imageUrl": "images/marinara.png"  
+    }, 
+    { 
+      "id": 4, 
+      "pizzaName": "Carciofi", 
+      "description": "Pizza with tomato, fresh mozzarella and artichokes",
+      "price": 8.80, 
+      "imageUrl": "images/marinara.png"  
+    }, 
+    { 
+      "id": 5, 
+      "pizzaName": "Bufala", 
+      "description": "Pizza with tomato, buffalo mozzarella and basil",
+      "price": 12.50, 
+      "imageUrl": "images/marinara.png"  
+    }
+]
+```
+
+### **2. Masukkan hasil capture layar ke laporan praktikum Anda.**
+![](./assets/praktikum1.png)
