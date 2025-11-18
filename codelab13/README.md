@@ -844,5 +844,5 @@ class _MyHomePageState extends State<MyHomePage> {
 }
 ```
 
-### **9. apture hasil praktikum Anda berupa GIF dan lampirkan di README.**
+### **9. Capture hasil praktikum Anda berupa GIF dan lampirkan di README.**
 ![](./assets/praktikum7_codelab13.gif)
