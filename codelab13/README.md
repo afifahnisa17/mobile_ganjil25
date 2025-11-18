@@ -343,3 +343,51 @@ class Pizza {
 ### **4. Capture hasil running aplikasi Anda, kemudian impor ke laporan praktikum Anda!**
 ![](./assets/praktikum2.png)
 
+# PRAKTIKUM 3
+### pizza.dart
+
+```dart
+const keyId = 'id';
+const keyName = 'pizzaName';
+const keyDescription = 'description';
+const keyPrice = 'price';
+const keyImageUrl = 'imageUrl';
+
+class Pizza {
+  final int id;
+  final String pizzaName;
+  final String description;
+  final double? price;
+  final String imageUrl;
+
+  Pizza.fromJson(Map<String, dynamic> json)
+    : id = int.tryParse(json[keyId].toString()) ?? 0,
+      pizzaName = json[keyName] != null
+          ? json[keyName].toString()
+          : 'No Name',
+      description = json[keyDescription] != null
+          ? json[keyDescription].toString()
+          : '',
+      price = double.tryParse(json[keyPrice].toString()) ?? 0.0,
+      imageUrl = json[keyImageUrl] ?? '';
+
+  Map<String, dynamic> toJson() {
+    return {
+      keyId: id,
+      keyName: pizzaName,
+      keyDescription: description,
+      keyPrice: price,
+      keyImageUrl: imageUrl,
+    };
+  }
+}
+```
+
+### ** 5. Jelaskan maksud kode lebih safe dan maintainable!**
+
+✔ Karena pakai konstanta → aman dari typo, mudah diubah
+✔ Karena pakai OOP → struktur data rapi, reusable
+✔ Karena parsing terpusat di satu class → mudah diperbaiki
+✔ Karena ada default value & tryParse → aplikasi tidak mudah crash
+### **Capture hasil praktikum Anda dan lampirkan di README.**
+![](./assets/praktikum3.png)
