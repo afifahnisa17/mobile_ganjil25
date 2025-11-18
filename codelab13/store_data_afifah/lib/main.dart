@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import './model/pizza.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+import 'package:path_provider/path_provider.dart';
 
 void main() {
   runApp(const MyApp());
@@ -39,6 +40,8 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  String documentPath = '';
+  String tempPath = '';
   // String pizzaString = ' ';
 
   // @override
@@ -54,18 +57,13 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Shared Preferences Demo - Afifah')),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          children: [
-            Text('You have opened the app $appCounter times.'),
-            ElevatedButton(
-              onPressed: () {
-                deletePreference();
-              }, child: const Text('Reset Counter')),
-          ],
-        ),
+      appBar: AppBar(title: const Text('Path Provider - Afifah')),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          Text('Document Path: $documentPath'),
+          Text('Temporary Path: $tempPath'),
+        ],
       ),
     );
   }
@@ -108,7 +106,7 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   void initState() {
     super.initState();
-    readAndWritePreference();
+    getPaths();
   }
 
   Future deletePreference() async {
@@ -116,6 +114,15 @@ class _MyHomePageState extends State<MyHomePage> {
     await prefs.clear();
     setState(() {
       appCounter = 0;
+    });
+  }
+
+  Future getPaths() async {
+    final docDir = await getApplicationDocumentsDirectory();
+    final tempDir = await getTemporaryDirectory();
+    setState(() {
+      documentPath = docDir.path;
+      tempPath = tempDir.path;
     });
   }
 }
