@@ -338,3 +338,8 @@ class Pizza {
 
 ### **3. Masukkan hasil capture layar ke laporan praktikum Anda.**
 ![](./assets/praktikum1-2.png)
+
+# PRAKTIKUM 2
+### **4. Capture hasil running aplikasi Anda, kemudian impor ke laporan praktikum Anda!**
+![](./assets/praktikum2.png)
+
