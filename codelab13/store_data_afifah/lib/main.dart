@@ -4,6 +4,7 @@ import './model/pizza.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:path_provider/path_provider.dart';
 import 'dart:io';
+import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 
 void main() {
   runApp(const MyApp());
@@ -41,120 +42,59 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  String documentPath = '';
-  String tempPath = '';
-  late File myFile;
-  String fileText = '';
-  // String pizzaString = ' ';
+  final pwdController = TextEditingController();
+  final storage = const FlutterSecureStorage();
+  final String myKey = "myPass";
+  String myPass = '';
 
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   readJsonFile().then((value) {
-  //     setState(() {
-  //       myPizzas = value;
-  //     });
-  //   });
-  // }
+  @override
+  void dispose() {
+    pwdController.dispose();
+    super.dispose();
+  }
+
+  Future<void> writeToSecureStorage() async {
+    await storage.write(key: myKey, value: pwdController.text);
+  }
+
+  Future<String> readFromSecureStorage() async {
+    return await storage.read(key: myKey) ?? "";
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(title: const Text('Path Provider - Afifah')),
       body: Column(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        mainAxisSize: MainAxisSize.min,
         children: [
-          Text('Document Path: $documentPath'),
-          Text('Temporary Path: $tempPath'), 
-        ElevatedButton (
-          child: const Text ('Read File'),
-          onPressed: () => readFile(),
-        ),
-        Text(fileText),
-      ],
+          TextField(
+            controller: pwdController,
+          ),
+
+          // SAVE BUTTON
+          ElevatedButton(
+            child: const Text('Save Value'),
+            onPressed: () {
+              writeToSecureStorage();
+            },
+          ),
+
+          // READ BUTTON
+          ElevatedButton(
+            child: const Text('Read Value'),
+            onPressed: () async {
+              String value = await readFromSecureStorage();
+              setState(() {
+                myPass = value;
+              });
+            },
+          ),
+
+          // TAMPILKAN HASIL (opsional)
+          Text("$myPass"),
+        ],
       ),
     );
-  }
-
-  // Future readJsonFile() async {
-  //   String myString = await DefaultAssetBundle.of(
-  //     context,
-  //   ).loadString('assets/pizzalist_broken.json');
-  //   List pizzaMapList = jsonDecode(myString);
-
-  //   List<Pizza> myPizzas = [];
-  //   for (var pizza in pizzaMapList) {
-  //     Pizza myPizza = Pizza.fromJson(pizza);
-  //     myPizzas.add(myPizza);
-  //   }
-
-  //   String json = convertToJson(myPizzas);
-  //   print(json);
-  //   return myPizzas;
-  // }
-
-  // List<Pizza> myPizzas = [];
-
-  // String convertToJson(List<Pizza> pizzas) {
-  //   return jsonEncode(pizzas.map((pizza) => pizza.toJson()).toList());
-  // }
-
-  int appCounter = 0;
-
-  Future readAndWritePreference() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    appCounter = (prefs.getInt('counter') ?? 0);
-    appCounter++;
-    await prefs.setInt('appCounter', appCounter);
-    setState(() {
-      appCounter = appCounter;
-    });
-  }
-
-  @override
-  void initState() {
-    getPaths().then((_){
-      myFile = File('$documentPath/pizzas.txt');
-      writeFile();
-    });
-    super.initState();
-  }
-
-  Future deletePreference() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    await prefs.clear();
-    setState(() {
-      appCounter = 0;
-    });
-  }
-
-  Future getPaths() async {
-    final docDir = await getApplicationDocumentsDirectory();
-    final tempDir = await getTemporaryDirectory();
-    setState(() {
-      documentPath = docDir.path;
-      tempPath = tempDir.path;
-    });
-  }
-
-  Future<bool> writeFile() async {
-    try {
-      await myFile.writeAsString('Margherita, Capricciosa, Napoli');
-      return true;
-    } catch (e) {
-      return false;
-    }
-  }
-
-  Future<bool> readFile() async{
-    try {
-      String fileContent = await myFile.readAsString();
-      setState(() {
-        fileText = fileContent;
-      });
-      return true;
-    } catch (e) {
-      return false;
-    }
   }
 }
