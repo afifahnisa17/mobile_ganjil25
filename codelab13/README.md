@@ -600,3 +600,141 @@ class _MyHomePageState extends State<MyHomePage> {
 
 ### ** 7.Capture hasil praktikum Anda dan lampirkan di README
 ![](./assets/praktikum5.png)
+
+# PRAKTIKUM 6
+### main.dart
+
+```dart
+import 'dart:convert';
+import 'package:flutter/material.dart';
+import './model/pizza.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:path_provider/path_provider.dart';
+import 'dart:io';
+
+void main() {
+  runApp(const MyApp());
+}
+
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Shared Preferences Demo - Afifah',
+      theme: ThemeData(
+        scaffoldBackgroundColor: Colors.white, // background putih
+        appBarTheme: const AppBarTheme(
+          backgroundColor: Colors.purple,
+          elevation: 0,
+          titleTextStyle: TextStyle(
+            color: Colors.white,
+            fontSize: 20,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+      ),
+      home: const MyHomePage(),
+    );
+  }
+}
+
+class MyHomePage extends StatefulWidget {
+  const MyHomePage({super.key});
+
+  @override
+  State<MyHomePage> createState() => _MyHomePageState();
+}
+
+class _MyHomePageState extends State<MyHomePage> {
+  String documentPath = '';
+  String tempPath = '';
+  late File myFile;
+  String fileText = '';
+  
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: const Text('Path Provider - Afifah')),
+      body: Column(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          Text('Document Path: $documentPath'),
+          Text('Temporary Path: $tempPath'), 
+        ElevatedButton (
+          child: const Text ('Read File'),
+          onPressed: () => readFile(),
+        ),
+        Text(fileText),
+      ],
+      ),
+    );
+  }
+
+  int appCounter = 0;
+
+  Future readAndWritePreference() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    appCounter = (prefs.getInt('counter') ?? 0);
+    appCounter++;
+    await prefs.setInt('appCounter', appCounter);
+    setState(() {
+      appCounter = appCounter;
+    });
+  }
+
+  @override
+  void initState() {
+    getPaths().then((_){
+      myFile = File('$documentPath/pizzas.txt');
+      writeFile();
+    });
+    super.initState();
+  }
+
+  Future deletePreference() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    await prefs.clear();
+    setState(() {
+      appCounter = 0;
+    });
+  }
+
+  Future getPaths() async {
+    final docDir = await getApplicationDocumentsDirectory();
+    final tempDir = await getTemporaryDirectory();
+    setState(() {
+      documentPath = docDir.path;
+      tempPath = tempDir.path;
+    });
+  }
+
+  Future<bool> writeFile() async {
+    try {
+      await myFile.writeAsString('Margherita, Capricciosa, Napoli');
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
+
+  Future<bool> readFile() async{
+    try {
+      String fileContent = await myFile.readAsString();
+      setState(() {
+        fileText = fileContent;
+      });
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
+}
+```
+
+### **8. Jelaskan maksud kode pada langkah 3 dan 7 !**
+Fungsi `writeFile()` adalah fungsi asynchronous yang berusaha menulis teks **"Margherita, Capricciosa, Napoli"** ke sebuah file menggunakan `myFile.writeAsString()`. Jika proses penulisan berhasil, fungsi mengembalikan `true`, dan jika terjadi error, `catch` akan menangkapnya lalu mengembalikan `false`. Pada UI-nya, terdapat sebuah `ElevatedButton` yang ketika ditekan akan memanggil fungsi `readFile()` untuk membaca isi file tersebut, dan hasil bacaannya akan ditampilkan pada widget `Text(fileText)` sehingga pengguna dapat melihat teks yang tersimpan di file.
+
+### **Capture hasil praktikum Anda berupa GIF dan lampirkan di README.**
+![](./assets/praktikum6_codelab13.gif)
