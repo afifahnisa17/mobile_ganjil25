@@ -29,6 +29,7 @@ Berikut daftar materi praktikum setiap minggu (klik link buat lihat isi folderny
 | 10     | Dasar State Management 🏟️ | [Praktikum Minggu 10](./codelab10/README.md)                                               |
 | 11     | Pemrograman Asynchronous🍕 | [Praktikum Minggu 11](./codelab11/README.md)                                               |
 | 12     | Lanjutan State Management dengan Streams 🎏 | [Praktikum Minggu 12](./codelab12/README.md)                                               |
+| 13     | Persistensi Data 📑 | [Praktikum Minggu 13](./codelab13/README.md)                                               |
 
 ---
 
