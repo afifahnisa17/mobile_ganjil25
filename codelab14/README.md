@@ -260,3 +260,24 @@ class _PizzaDetailScreenState extends State<PizzaDetailScreen> {
 
 ![](./assets/praktikum2.png)
 
+# PRAKTIKUM 3
+# httphelper.dart
+```dart
+Future<String> putPizza(Pizza pizza) async {
+    const putPath = '/pizza';
+    String put = json.encode(pizza.toJson());
+    Uri url = Uri.https(authority, putPath);
+    http.Response r = await http.put(
+      url,
+      headers: {"Content-Type": "application/json"},
+      body: put,
+    );
+    return r.body;
+  }
+```
+### SOAL
+### **3. Ubah salah satu data dengan Nama dan NIM Anda, lalu perhatikan hasilnya di Wiremock.**
+![](./assets/praktikum3_codelab14.png)
+
+### **Capture hasil aplikasi Anda berupa GIF di README dan lakukan commit hasil jawaban Soal 3 dengan pesan "W14: Jawaban Soal 3"**
+![](./assets/praktikum3_codelab14.gif)

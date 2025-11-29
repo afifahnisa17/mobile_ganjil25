@@ -3,7 +3,15 @@ import 'httphelper.dart';
 import 'model/pizza.dart';
 
 class PizzaDetailScreen extends StatefulWidget {
-  const PizzaDetailScreen({super.key});
+  final Pizza pizza;
+  final bool isNew;
+
+  const PizzaDetailScreen({
+    super.key,
+    required this.pizza,
+    required this.isNew,
+  });
+
   @override
   State<PizzaDetailScreen> createState() => _PizzaDetailScreenState();
 }
@@ -14,12 +22,28 @@ class _PizzaDetailScreenState extends State<PizzaDetailScreen> {
   final TextEditingController txtDescription = TextEditingController();
   final TextEditingController txtPrice = TextEditingController();
   final TextEditingController txtImageUrl = TextEditingController();
+
   String operationResult = '';
+
+  @override
+  void initState() {
+    super.initState();
+
+    if (!widget.isNew) {
+      txtId.text = widget.pizza.id.toString();
+      txtName.text = widget.pizza.pizzaName;
+      txtDescription.text = widget.pizza.description;
+      txtPrice.text = widget.pizza.price.toString();
+      txtImageUrl.text = widget.pizza.imageUrl;
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Pizza Detail')),
+      appBar: AppBar(
+        title: Text(widget.isNew ? 'Add Pizza' : 'Edit Pizza'),
+      ),
       body: Padding(
         padding: const EdgeInsets.all(12),
         child: SingleChildScrollView(
@@ -33,47 +57,56 @@ class _PizzaDetailScreenState extends State<PizzaDetailScreen> {
                 ),
               ),
               const SizedBox(height: 24),
-              TextField(
-                controller: txtId,
-                decoration: const InputDecoration(hintText: 'Insert ID'),
-              ),
-              const SizedBox(height: 24),
-              TextField(
-                controller: txtName,
-                decoration: const InputDecoration(
-                  hintText: 'Insert Pizza Name',
-                ),
-              ),
-              const SizedBox(height: 24),
-              TextField(
-                controller: txtDescription,
-                decoration: const InputDecoration(
-                  hintText: 'Insert Description',
-                ),
-              ),
-              const SizedBox(height: 24),
-              TextField(
-                controller: txtPrice,
-                decoration: const InputDecoration(hintText: 'Insert Price'),
-                keyboardType: TextInputType.number,
-              ),
-              const SizedBox(height: 24),
-              TextField(
-                controller: txtImageUrl,
-                decoration: const InputDecoration(hintText: 'Insert Image Url'),
-              ),
-              const SizedBox(height: 48),
+
+              _buildTextField(txtId, "Insert ID"),
+              _buildTextField(txtName, "Insert Pizza Name"),
+              _buildTextField(txtDescription, "Insert Description"),
+              _buildTextField(txtPrice, "Insert Price", isNumber: true),
+              _buildTextField(txtImageUrl, "Insert Image Url"),
+
+              const SizedBox(height: 40),
+
               ElevatedButton(
-                child: const Text('Send Post'),
-                onPressed: () {
-                  postPizza();
-                },
-              ),
+                onPressed: savePizza,
+                child: Text(widget.isNew ? "Send POST" : "Save (PUT)"),
+              )
             ],
           ),
         ),
       ),
     );
+  }
+
+  Widget _buildTextField(TextEditingController c, String hint,
+      {bool isNumber = false}) {
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 24),
+      child: TextField(
+        controller: c,
+        keyboardType: isNumber ? TextInputType.number : TextInputType.text,
+        decoration: InputDecoration(hintText: hint),
+      ),
+    );
+  }
+
+  Future<void> savePizza() async {
+    HttpHelper helper = HttpHelper();
+
+    Pizza pizza = Pizza(
+      id: int.parse(txtId.text),
+      pizzaName: txtName.text,
+      description: txtDescription.text,
+      price: double.tryParse(txtPrice.text) ?? 0.0,
+      imageUrl: txtImageUrl.text,
+    );
+
+    final result = await (widget.isNew
+        ? helper.postPizza(pizza)
+        : helper.putPizza(pizza));
+
+    setState(() {
+      operationResult = result;
+    });
   }
 
   @override
@@ -84,26 +117,5 @@ class _PizzaDetailScreenState extends State<PizzaDetailScreen> {
     txtPrice.dispose();
     txtImageUrl.dispose();
     super.dispose();
-  }
-
-  Future<void> postPizza() async {
-    HttpHelper helper = HttpHelper();
-
-    // Buat objek Pizza dari TextField
-    Pizza pizza = Pizza(
-      id: int.parse(txtId.text),
-      pizzaName: txtName.text,
-      description: txtDescription.text,
-      price: double.tryParse(txtPrice.text),
-      imageUrl: txtImageUrl.text,
-    );
-
-    // Kirim POST
-    String response = await helper.postPizza(pizza);
-
-    // Tampilkan hasil
-    setState(() {
-      operationResult = response;
-    });
   }
 }
