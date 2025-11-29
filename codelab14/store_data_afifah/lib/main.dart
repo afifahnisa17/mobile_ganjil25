@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import './model/pizza.dart';
 import 'httphelper.dart';
+import 'model/pizza.dart';
 import 'pizza_detail.dart';
 
 void main() {
@@ -12,21 +12,9 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'JSON - Afifah',
-      theme: ThemeData(
-        scaffoldBackgroundColor: Colors.white,
-        appBarTheme: const AppBarTheme(
-          backgroundColor: Colors.purple,
-          elevation: 0,
-          titleTextStyle: TextStyle(
-            color: Colors.white,
-            fontSize: 20,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-      ),
-      home: const MyHomePage(),
+    return const MaterialApp(
+      home: MyHomePage(),
+      debugShowCheckedModeBanner: false,
     );
   }
 }
@@ -39,73 +27,127 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  List<Pizza> pizzas = [];
+  bool loading = true;
+
+  @override
+  void initState() {
+    super.initState();
+    loadData();
+  }
+
+  Future<void> loadData() async {
+    HttpHelper helper = HttpHelper();
+    pizzas = await helper.getPizzaList();
+    setState(() => loading = false);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('JSON')),
-      body: FutureBuilder<List<Pizza>>(
-        future: callPizzas(),
-        builder: (context, snapshot) {
-          if (snapshot.hasError) {
-            return const Center(child: Text('Something went wrong'));
-          }
-          if (!snapshot.hasData) {
-            return const Center(child: CircularProgressIndicator());
-          }
+      backgroundColor: Colors.white,
+      appBar: AppBar(
+      backgroundColor: Colors.purple,
+      title: const Text(
+        'JSON - Afifah',
+        style: TextStyle(
+        color: Colors.white,
+        fontSize: 20,
+        fontWeight: FontWeight.bold,
+        ),
+      ),
+      ),
 
-          List<Pizza> pizzas = snapshot.data!;
+      body: loading
+        ? const Center(child: CircularProgressIndicator())
+        : ListView.builder(
+          itemCount: pizzas.length,
+          itemBuilder: (context, position) {
+          final pizza = pizzas[position];
 
-          return ListView.builder(
-            itemCount: pizzas.length,
-            itemBuilder: (context, position) {
-              return ListTile(
-                title: Text(pizzas[position].pizzaName),
-                subtitle: Text(
-                  '${pizzas[position].description} - € ${pizzas[position].price}',
+          return Dismissible(
+            key: Key(pizza.id.toString()),
+            direction: DismissDirection.endToStart,
+
+            confirmDismiss: (direction) async {
+            // ➜ popup dulu, lalu return true/false
+            return await showDialog(
+              context: context,
+              builder: (context) => AlertDialog(
+              title: const Text("Hapus Pizza?"),
+              content:
+                Text("Yakin ingin menghapus ${pizza.pizzaName}?"),
+              actions: [
+                TextButton(
+                onPressed: () => Navigator.of(context).pop(false),
+                child: const Text("Batal"),
                 ),
-                onTap: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => PizzaDetailScreen(
-                        pizza: pizzas[position],
-                        isNew: false,
-                      ),
-                    ),
-                  );
-                },
+                TextButton(
+                onPressed: () => Navigator.of(context).pop(true),
+                child: const Text("Hapus"),
+                ),
+              ],
+              ),
+            );
+            },
+
+            onDismissed: (direction) async {
+            final deletedId = pizza.id;
+
+            // hapus dari UI
+            setState(() {
+              pizzas.removeAt(position);
+            });
+
+            // delete ke server
+            HttpHelper helper = HttpHelper();
+            await helper.deletePizza(deletedId);
+            },
+
+            background: Container(
+            color: Colors.red,
+            alignment: Alignment.centerRight,
+            padding: const EdgeInsets.only(right: 20),
+            child: const Icon(Icons.delete, color: Colors.white),
+            ),
+
+            child: ListTile(
+            title: Text(pizza.pizzaName),
+            subtitle:
+              Text("${pizza.description} - € ${pizza.price}"),
+            onTap: () {
+              Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (_) =>
+                  PizzaDetailScreen(pizza: pizza, isNew: false),
+              ),
               );
             },
-          );
-        },
-      ),
-
-      // === Floating Action Button ===
-      floatingActionButton: FloatingActionButton(
-        child: const Icon(Icons.add),
-        onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (context) => PizzaDetailScreen(
-                pizza: Pizza(
-                  id: 0,
-                  pizzaName: "",
-                  description: "",
-                  price: 0,
-                  imageUrl: "",
-                ),
-                isNew: true,
-              ),
             ),
           );
-        },
+          },
+        ),
+
+      floatingActionButton: FloatingActionButton(
+      child: const Icon(Icons.add),
+      onPressed: () {
+        Navigator.push(
+        context,
+        MaterialPageRoute(
+          builder: (_) => PizzaDetailScreen(
+          pizza: Pizza(
+            id: 0,
+            pizzaName: "",
+            description: "",
+            price: 0,
+            imageUrl: ""),
+          isNew: true,
+          ),
+        ),
+        );
+      },
       ),
     );
-  }
-
-  Future<List<Pizza>> callPizzas() async {
-    HttpHelper helper = HttpHelper();
-    return await helper.getPizzaList();
   }
 }

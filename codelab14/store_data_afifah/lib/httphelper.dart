@@ -44,4 +44,12 @@ class HttpHelper {
     );
     return r.body;
   }
+
+  Future<String> deletePizza(int id) async {
+    const deletePath = '/pizza';
+    Uri url = Uri.https(authority, deletePath);
+
+    http.Response r = await http.delete(url);
+    return r.body;
+  }
 }
