@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import './model/pizza.dart';
 import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'httphelper.dart';
-
+import 'pizza_detail.dart';
 
 void main() {
   runApp(const MyApp());
@@ -27,7 +27,7 @@ class MyApp extends StatelessWidget {
           ),
         ),
       ),
-      home: const MyHomePage(),
+      home: const PizzaDetailScreen(),
     );
   }
 }
@@ -86,7 +86,16 @@ description +
                   );
                 });
           }),
-    );  
+          floatingActionButton: FloatingActionButton(
+          child: const Icon(Icons.add),
+          onPressed: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => const PizzaDetailScreen()),
+            );
+          }),
+            );  
 }
 
     Future<List<Pizza>> callPizzas() async {
